@@ -12,7 +12,7 @@ class script(object):
     ABOUT_TXT = """<b>╭───────────⍟
 ├🤖 ᴍʏ ɴᴀᴍᴇ : <a href=https://t.me/{}>{}</a>
 ├👑 ᴏᴡɴᴇʀ : <a href={}>ᴏᴡɴᴇʀ</a>
-├👨‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/SilentXBotz>ꜱɪʟᴇɴᴛxʙᴏᴛᴢ </a>
+├👨‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/Prime_Movie_Request_bot>ʙᴏᴛᴢ </a>
 ├📕 ʟɪʙʀᴀʀʏ : <a href=https://github.com/pyrogram>ᴘʏʀᴏɢʀᴀᴍ</a>
 ├✏️ ʟᴀɴɢᴜᴀɢᴇ : <a href=https://www.python.org>ᴘʏᴛʜᴏɴ 3</a>
 ├💾 ᴅᴀᴛᴀʙᴀꜱᴇ : <a href=https://cloud.mongodb.com>ᴍᴏɴɢᴏ ᴅʙ</a>
@@ -189,7 +189,7 @@ class script(object):
 🗓️ 02 ᴍᴏɴᴛʜꜱ ➪ 120 ₹ / 120 ⭐
 🗓️ 03 ᴍᴏɴᴛʜꜱ ➪ 220 ₹ / 220 ⭐
 
-📜 <a href='https://t.me/+blcE2jS-iGtkMjNl'>ᴄʜᴇᴄᴋ ᴘʀᴏᴏꜰꜱ</a>
+📜 <a href='https://t.me/payment_prime'>ᴄʜᴇᴄᴋ ᴘʀᴏᴏꜰꜱ</a>
 
 ⚠️ ɪᴍᴘᴏʀᴛᴀɴᴛ:
 1️⃣ ꜱᴇɴᴅ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ᴀꜰᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ.
@@ -199,7 +199,7 @@ class script(object):
 
 ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ʙᴜʏ ᴏᴜʀ ᴘʀᴇᴍɪᴜᴍ ꜱᴇʀᴠɪᴄᴇ ᴜꜱɪɴɢ ᴛᴇʟᴇɢʀᴀᴍ ꜱᴛᴀʀꜱ.  
 
-ɪꜰ ʏᴏᴜ ꜰᴀᴄᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ, ᴛᴀᴋᴇ ᴀ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ᴀɴᴅ ꜱᴇɴᴅ ɪᴛ ᴛᴏ - @SilentXBotz
+ɪꜰ ʏᴏᴜ ꜰᴀᴄᴇ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ, ᴛᴀᴋᴇ ᴀ ꜱᴄʀᴇᴇɴꜱʜᴏᴛ ᴀɴᴅ ꜱᴇɴᴅ ɪᴛ ᴛᴏ - @Prime_Movie_Request_bot
 
 ꜱᴇʟᴇᴄᴛ ʏᴏᴜʀ ᴅᴇꜱɪʀᴇᴅ ᴀᴍᴏᴜɴᴛ ᴀɴᴅ ᴘᴜʀᴄʜᴀꜱᴇ ᴀ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ 👇.</b>
 """
@@ -243,8 +243,12 @@ class script(object):
 
 ᴍᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b>{file_name}\n
-📤 ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ: <a href="https://t.me/SilentXBotz">SɪʟᴇɴᴛXʙᴏᴛᴢ</a></b>"""
+    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prime_Movie_YT_Group'>{file_name}</a></b></blockquote>
+<b>ғɪʟᴇ sɪᴢᴇ ✓ {file_size}</b>
+
+<b>ᴊᴏɪɴ ɢʀᴏᴜᴘ ✈︎ @Prime_Movie_YT_Group </b>
+<b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @SpyRadioHdMovie </b>
+<b>sᴜᴘᴘᴏʀᴛ ✈︎ @Prime_Movie_Request_bot </b>"""
 
     IMDB_TEMPLATE_TXT = """
 <b>🎬 ᴛɪᴛʟᴇ: <a href={url}>{title}</a>
@@ -258,13 +262,13 @@ class script(object):
 
     RESTART_TXT = """
 <b>✅ ʙᴏᴛ ʀᴇꜱᴛᴀʀᴛᴇᴅ!
-🤖 ʙᴏᴛ : {}
+
 📅 ᴅᴀᴛᴇ: <code>{}</code>
 ⏰ ᴛɪᴍᴇ: <code>{}</code>
 🌐 ᴢᴏɴᴇ: <code>ᴀꜱɪᴀ/ᴋᴏʟᴋᴀᴛᴀ</code>
 🛠️ ᴠᴇʀꜱɪᴏɴ: <code>v4.3 [ ꜱᴛᴀʙʟᴇ ]</code>
 </b>"""
-    LOGO = r"""
+    LOGO = """
   ____  _ _            _  __  ______        _       
  / ___|(_) | ___ _ __ | |_\ \/ / __ )  ___ | |_ ____
  \___ \| | |/ _ \ '_ \| __|\  /|  _ \ / _ \| __|_  /
