@@ -492,7 +492,7 @@ async def advantage_spoll_choker(bot, query):
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
 	@Client.on_callback_query(filters.regex(r"^action_"))
-async def request_action_handler(client, query: CallbackQuery):
+async def request_action_handler(client, query: CallbackQuery):()
 
     if query.from_user.id not in ADMINS:
         return await query.answer("Only Admin Can Use This!", show_alert=True)
