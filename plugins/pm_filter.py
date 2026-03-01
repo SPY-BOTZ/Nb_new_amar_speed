@@ -29,6 +29,8 @@ import atexit
 
 tracemalloc.start()
 atexit.register(tracemalloc.stop)
+import os
+req_channel = int(os.environ.get('REQ_CHANNAL', '-1001937259467'))
 
 TIMEZONE = "Asia/Kolkata"
 BUTTON = {}
@@ -141,6 +143,72 @@ async def build_pagination_buttons(btn, total_results, current_offset, next_offs
          btn.append(pagination_row)
 
 async def generic_filter_handler(client, query, key, offset, search_query):
+
+    files, n_offset, total_results = await get_search_results(
+        query.message.chat.id,
+        search_query,
+        offset=offset,
+        filter=True
+    )
+
+    # =========================
+    # 🚨 NO FILES FOUND
+    # =========================
+    if not files:
+
+        await query.answer("🚫 ɴᴏ ꜰɪʟᴇꜱ ꜰᴏᴜɴᴅ 🚫", show_alert=True)
+
+        try:
+            await client.send_message(
+                req_channel,
+                f"#REQUESTED_LOGS\n\n"
+                f"CONTENT NAME: '{search_query}'\n"
+                f"REQUEST BY: {query.from_user.first_name}\n"
+                f"USER ID: {query.from_user.id}",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("✅ Uploaded Done", callback_data=f"action_uploaded_{query.from_user.id}")],
+                    [InlineKeyboardButton("❌ Check Your Spelling", callback_data=f"action_spellcheck_{query.from_user.id}")],
+                    [InlineKeyboardButton("⏳ Not Released Yet", callback_data=f"action_notreleased_{query.from_user.id}")],
+                    [InlineKeyboardButton("🛠️ Under Processing", callback_data=f"action_processing_{query.from_user.id}")],
+                    [InlineKeyboardButton("💥 Close", callback_data="close_data")]
+                ])
+            )
+        except Exception as e:
+            LOGGER.error(f"Request Log Error: {e}")
+
+        return
+
+    # =========================
+    # NORMAL FILE SHOW
+    # =========================
+
+    temp.GETALL[key] = files
+    chat_id = query.message.chat.id
+    settings = await get_settings(chat_id)
+    req = query.from_user.id
+    btn = []
+
+    if settings.get('button'):
+        for file in files:
+            btn.append([InlineKeyboardButton(
+                text=f"{silent_size(file.file_size)} | {extract_tag(file.file_name)} {clean_filename(file.file_name)}",
+                callback_data=f'file#{file.file_id}'
+            )])
+
+    btn.insert(0, [
+        InlineKeyboardButton("ᴘɪxᴇʟ", callback_data=f"qualities#{key}#0"),
+        InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇ", callback_data=f"languages#{key}#0"),
+        InlineKeyboardButton("ꜱᴇᴀꜱᴏɴ",  callback_data=f"seasons#{key}#0")
+    ])
+
+    btn.insert(1, [InlineKeyboardButton("📥 Sᴇɴᴅ Aʟʟ 📥", callback_data=f"sendfiles#{key}")])
+
+    await build_pagination_buttons(btn, total_results, offset, n_offset, req, key, settings)
+
+    try:
+        await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
+    except:
+        pass
     files, n_offset, total_results = await get_search_results(query.message.chat.id, search_query, offset=offset, filter=True)
     if not files:
         await query.answer("🚫 ɴᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫", show_alert=1)
@@ -423,6 +491,37 @@ async def advantage_spoll_choker(bot, query):
                 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
+	@Client.on_callback_query(filters.regex(r"^action_"))
+async def request_action_handler(client, query: CallbackQuery):
+
+    if query.from_user.id not in ADMINS:
+        return await query.answer("Only Admin Can Use This!", show_alert=True)
+
+    data = query.data.split("_")
+    action = data[1]
+    user_id = int(data[2])
+
+    if action == "uploaded":
+        text = "✅ Your requested content has been uploaded."
+    elif action == "spellcheck":
+        text = "❌ Please check your spelling and search again."
+    elif action == "notreleased":
+        text = "⏳ This content is not released yet."
+    elif action == "processing":
+        text = "🛠️ Your request is under processing."
+    else:
+        return
+
+    try:
+        await client.send_message(user_id, text)
+    except:
+        pass
+
+    await query.message.edit_text(
+        f"{query.message.text}\n\nSTATUS: {text}"
+    )
+
+    await query.answer("Status Updated ✅")
     lazyData = query.data
     try:
         link = await client.create_chat_invite_link(int(REQST_CHANNEL))
