@@ -25,7 +25,7 @@ DEFAULT_IMAGE_URL = "https://te.legra.ph/file/88d845b4f8a024a71465d.jpg"
 SILENTX_PREMIUM_UPDATE = """
 <blockquote>🎬 𝕻ℝ𝔼𝕄𝕀𝕌𝕄 𝕄𝕆𝕍𝕀𝔼 𝕌ℙ𝔻𝔸𝕋𝔼 🎥</blockquote>
 
-<b><u>{}</u></b> <code>#{}</code>
+<b><code></code></b> <code>{}</code>
 
 <code>━━━━━━━━━━━━━━━━━━</code>
 <b>🔈 Audio</b>: {}
@@ -38,12 +38,11 @@ SILENTX_PREMIUM_UPDATE = """
 <b>🏷️ Genres</b>: {}
 <code>━━━━━━━━━━━━━━━━━━</code>
 
-<b>⚡ Powered By @SilentXBotz</b>
+<b>⚡ Powered By @ClipMateBhai</b>
 """
 
 notified_movies = set()
 media_filter = filters.document | filters.video | filters.audio
-media_process_lock = asyncio.Lock()
 
 @Client.on_message(filters.chat(CHANNELS) & media_filter)
 async def media(bot, message):
@@ -53,19 +52,15 @@ async def media(bot, message):
             break
     else:
         return
-
     media.file_type = file_type
     media.caption = message.caption
-
-    async with media_process_lock:
-        try:
-            success, silentxbotz = await save_file(media)
-            if success and silentxbotz == 1 and await get_status(bot.me.id):            
-                await send_movie_update(bot, file_name=media.file_name, caption=media.caption)
-                
-        except Exception as e:
-            LOGGER.error(f"Error while saving media or sending update: {e}")
-            pass
+    success, silentxbotz = await save_file(media)
+    try:  
+        if success and silentxbotz == 1 and await get_status(bot.me.id):            
+            await send_movie_update(bot, file_name=media.file_name, caption=media.caption)
+    except Exception as e:
+        LOGGER.error(f"Error In Movie Update - {e}")
+        pass
 
 async def send_movie_update(bot, file_name, caption):
     try:
@@ -88,18 +83,13 @@ async def send_movie_update(bot, file_name, caption):
         tmdb_data = await fetch_tmdb_data(file_name, year)
         search_movie = file_name.replace(" ", "-")
         if not tmdb_data:
-            return 
-
-        director = tmdb_data.get("director", "")
-        if not director or not director.strip():
-            director = "N/A"
-            
+            return          
         full_caption = SILENTX_PREMIUM_UPDATE.format(
             escape_html(tmdb_data["title"]),
             tmdb_data["kind"],
             escape_html(language),
             "MKV" if "mkv" in file_name.lower() else "MP4",
-            escape_html(director),
+            escape_html(tmdb_data["director"] or "N/A"),
             escape_html(tmdb_data["release_date"] or "TBA"),
             tmdb_data["vote_average"],
             tmdb_data["vote_count"],
@@ -115,6 +105,10 @@ def escape_html(text: str) -> str:
         return ""
     return str(text).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
+async def get_director_from_crew(crew: list) -> str:
+    directors = [person["name"] for person in crew if person.get("job") == "Director"]
+    return directors[0] if directors else None
+
 def get_trailer_button(tmdb_data: Dict) -> list:
     videos = tmdb_data.get("videos", [])
     yt_videos = [v for v in videos if "youtube" in v.get("url", "").lower()]    
@@ -125,7 +119,7 @@ def get_trailer_button(tmdb_data: Dict) -> list:
 async def send_with_visual(bot, caption: str, tmdb_data: Dict, search_movie):
     try:
         visual_url = await get_best_visual(tmdb_data)
-        get_file = f'https://telegram.me/{temp.U_NAME}?start=getfile-{search_movie}'
+        get_file = f'https://t.me/Prime_Movie_YT_Group'
         keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton("📱 Get File", url=get_file)],
             get_trailer_button(tmdb_data)
