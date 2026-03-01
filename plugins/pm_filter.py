@@ -127,20 +127,7 @@ async def build_pagination_buttons(btn, total_results, current_offset, next_offs
     current_page = math.ceil(current_offset / limit) + 1
     pagination_row = []
     if current_offset > 0:
-        prev_offset = max(0, current_offset - limit)
-        pagination_row.append(InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{prev_offset}"))
-    pagination_row.append(InlineKeyboardButton(f"{current_page} / {total_pages}", callback_data="pages"))
-    if next_offset is not None and next_offset != 0 and next_offset < total_results:
-         pagination_row.append(InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{next_offset}"))
-    elif next_offset == 0 and current_offset + limit < total_results:
-         pass
-    if len(pagination_row) == 1 and pagination_row[0].text.startswith(str(current_page)):
-         if total_pages > 1:
-             btn.append(pagination_row)
-         else:
-             btn.append([InlineKeyboardButton(text="↭ ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇꜱ ᴀᴠᴀɪʟᴀʙʟᴇ ↭", callback_data="pages")])
-    else:
-         btn.append(pagination_row)
+    # ✅ REPLACE your old generic_filter_handler with this one
 
 async def generic_filter_handler(client, query, key, offset, search_query):
 
@@ -201,47 +188,52 @@ async def generic_filter_handler(client, query, key, offset, search_query):
         InlineKeyboardButton("ꜱᴇᴀꜱᴏɴ",  callback_data=f"seasons#{key}#0")
     ])
 
-    btn.insert(1, [InlineKeyboardButton("📥 Sᴇɴᴅ Aʟʟ 📥", callback_data=f"sendfiles#{key}")])
+    btn.insert(1, [
+        InlineKeyboardButton("📥 Sᴇɴᴅ Aʟʟ 📥", callback_data=f"sendfiles#{key}")
+    ])
 
-    await build_pagination_buttons(btn, total_results, offset, n_offset, req, key, settings)
+    await build_pagination_buttons(
+        btn,
+        total_results,
+        offset,
+        n_offset,
+        req,
+        key,
+        settings
+    )
 
     try:
-        await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
-    except:
+        await query.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+    except MessageNotModified:
         pass
-    files, n_offset, total_results = await get_search_results(query.message.chat.id, search_query, offset=offset, filter=True)
-    if not files:
-        await query.answer("🚫 ɴᴏ ꜰɪʟᴇꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ 🚫", show_alert=1)
-        return
-    temp.GETALL[key] = files
-    chat_id = query.message.chat.id
-    settings = await get_settings(chat_id)
-    req = query.from_user.id
-    btn = []
-    if settings.get('button'):
-        for file in files:
-            btn.append([InlineKeyboardButton(
-                text=f"{silent_size(file.file_size)} | {extract_tag(file.file_name)} {clean_filename(file.file_name)}",
-                callback_data=f'file#{file.file_id}'
-            )])
-    btn.insert(0, [
-        InlineKeyboardButton("ᴘɪxᴇʟ", callback_data=f"qualities#{key}#0"),
-        InlineKeyboardButton("ʟᴀɴɢᴜᴀɢᴇ", callback_data=f"languages#{key}#0"),
-        InlineKeyboardButton("ꜱᴇᴀꜱᴏɴ",  callback_data=f"seasons#{key}#0")
-    ])
-    btn.insert(1, [InlineKeyboardButton("📥 Sᴇɴᴅ Aʟʟ 📥", callback_data=f"sendfiles#{key}")])
-    await build_pagination_buttons(btn, total_results, offset, n_offset, req, key, settings)
-    cap = ""
-    if not settings.get('button'):
-        curr_time = datetime.now(pytz.timezone('Asia/Kolkata')).time()
-        time_difference = timedelta(hours=curr_time.hour, minutes=curr_time.minute, seconds=(curr_time.second+(curr_time.microsecond/1000000))) - timedelta(hours=curr_time.hour, minutes=curr_time.minute, seconds=(curr_time.second+(curr_time.microsecond/1000000)))
-        remaining_seconds = "{:.2f}".format(time_difference.total_seconds())
-        cap = await get_cap(settings, remaining_seconds, files, query, total_results, search_query, offset)
-        try:
-            await query.message.edit_text(text=cap, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True, parse_mode=enums.ParseMode.HTML)
-        except MessageNotModified:
-            pass
+    prev_offset = max(0, current_offset - limit)
+        pagination_row.append(InlineKeyboardButton("⋞ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{prev_offset}"))
+    pagination_row.append(InlineKeyboardButton(f"{current_page} / {total_pages}", callback_data="pages"))
+    if next_offset is not None and next_offset != 0 and next_offset < total_results:
+         pagination_row.append(InlineKeyboardButton("ɴᴇxᴛ ⋟", callback_data=f"next_{req}_{key}_{next_offset}"))
+    elif next_offset == 0 and current_offset + limit < total_results:
+         pass
+    if len(pagination_row) == 1 and pagination_row[0].text.startswith(str(current_page)):
+         if total_pages > 1:
+             btn.append(pagination_row)
+         else:
+             btn.append([InlineKeyboardButton(text="↭ ɴᴏ ᴍᴏʀᴇ ᴘᴀɢᴇꜱ ᴀᴠᴀɪʟᴀʙʟᴇ ↭", callback_data="pages")])
     else:
+         btn.append(pagination_row)
+
+async def generic_filter_handler(client, query, key, offset, search_query):
+
+    files, n_offset, total_results = await get_search_results(
+        query.message.chat.id,
+        search_query,
+        offset=offset,
+        filter=True
+    )
+
+    # =========================
+    
         try:
             await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(btn))
         except MessageNotModified:
