@@ -184,10 +184,9 @@ class script(object):
     PREMIUM_TEXT = """<b>💎 <u>ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴꜱ</u> 💎
 
 🗓️ 07 ᴅᴀʏꜱ  ➪  15 ₹ / 15 ⭐
-🗓️ 15 ᴅᴀʏꜱ  ➪  30 ₹ / 30 ⭐
-🗓️ 01 ᴍᴏɴᴛʜ ➪  60 ₹ / 60 ⭐
-🗓️ 02 ᴍᴏɴᴛʜꜱ ➪ 120 ₹ / 120 ⭐
-🗓️ 03 ᴍᴏɴᴛʜꜱ ➪ 220 ₹ / 220 ⭐
+🗓️ 01 ᴍᴏɴᴛʜ ➪  39 ₹ / 39 ⭐
+🗓️ 02 ᴍᴏɴᴛʜꜱ ➪ 75 ₹ / 75 ⭐
+🗓️ 03 ᴍᴏɴᴛʜꜱ ➪ 110 ₹ / 110 ⭐
 
 📜 <a href='https://t.me/payment_prime'>ᴄʜᴇᴄᴋ ᴘʀᴏᴏꜰꜱ</a>
 
@@ -243,10 +242,10 @@ class script(object):
 
 ᴍᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prime_Movie_YT_Group'>{file_name}</a></b></blockquote>
+    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prim_Movie_YT_Group'>{file_name}</a></b></blockquote>
 <b>ғɪʟᴇ sɪᴢᴇ ✓ {file_size}</b>
 
-<b>ᴊᴏɪɴ ɢʀᴏᴜᴘ ✈︎ @Prime_Movie_YT_Group </b>
+<b>ᴊᴏɪɴ ɢʀᴏᴜᴘ ✈︎ @Prime_Move_YT_Group </b>
 <b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @SpyRadioHdMovie </b>
 <b>sᴜᴘᴘᴏʀᴛ ✈︎ @Prime_Movie_Request_bot </b>"""
 
