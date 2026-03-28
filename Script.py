@@ -242,7 +242,7 @@ class script(object):
 
 ᴍᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prim_Movie_YT_Group'>{file_name}</a></b></blockquote>
+    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prim_Moe_YT_Group'>{file_name}</a></b></blockquote>
 <b>ғɪʟᴇ sɪᴢᴇ ✓ {file_size}</b>
 
 <b>ᴊᴏɪɴ ɢʀᴏᴜᴘ ✈︎ @Prime_Move_YT_Group </b>
