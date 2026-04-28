@@ -242,12 +242,12 @@ class script(object):
 
 ᴍᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prim_Moe_YT_Group'>{file_name}</a></b></blockquote>
+    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/MovieSearchAutoGroup'>{file_name}</a></b></blockquote>
 <b>ғɪʟᴇ sɪᴢᴇ ✓ {file_size}</b>
 
-<b>ᴊᴏɪɴ ɢʀᴏᴜᴘ ✈︎ @Prime_Move_YT_Group </b>
-<b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @SpyRadioHdMovie </b>
-<b>sᴜᴘᴘᴏʀᴛ ✈︎ @Prime_Movie_Request_bot </b>"""
+<b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @MovieSearchAutoGroup </b>
+<b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @payment_prime </b>
+<b>sᴜᴘᴘᴏʀᴛ ✈︎ @SubscribtionRobotbot </b>"""
 
     IMDB_TEMPLATE_TXT = """
 <b>🎬 ᴛɪᴛʟᴇ: <a href={url}>{title}</a>
