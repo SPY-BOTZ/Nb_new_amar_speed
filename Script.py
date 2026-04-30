@@ -87,7 +87,7 @@ class script(object):
 
 ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪꜰɪᴇᴅ. ᴘʟᴇᴀꜱᴇ ᴠᴇʀɪꜰʏ ᴛᴏ ɢᴇᴛ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ.
 
-📊 ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ꜱᴛᴀᴛᴜꜱ: 1/3
+📊 ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ꜱᴛᴀᴛᴜꜱ: 1/1
 
 💡 <i>ᴡᴀɴᴛ ᴛᴏ ꜱᴋɪᴘ ᴛʜɪꜱ? ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ ꜰᴏʀ ᴅɪʀᴇᴄᴛ ꜰɪʟᴇꜱ!</i></b>"""
     
@@ -247,7 +247,7 @@ class script(object):
 
 <b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @MovieSearchAutoGroup </b>
 <b>ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ ✈︎ @payment_prime </b>
-<b>sᴜᴘᴘᴏʀᴛ ✈︎ @SubscribtionRobotbot </b>"""
+<b>sᴜᴘᴘᴏʀᴛ ✈︎ @MovieSearchAutoGroup </b>"""
 
     IMDB_TEMPLATE_TXT = """
 <b>🎬 ᴛɪᴛʟᴇ: <a href={url}>{title}</a>
