@@ -95,9 +95,13 @@ async def start(client, message):
         buttons = [[
                     InlineKeyboardButton('+ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ +', url=f'http://telegram.me/{temp.U_NAME}?startgroup=true')
                 ],[
-                    InlineKeyboardButton('🧧 ᴛʀᴇɴᴅɪɴɢ', callback_data="topsearch")
+                    InlineKeyboardButton('🧧 ᴛʀᴇɴᴅɪɴɢ', callback_data="topsearch"),
+                    InlineKeyboardButton('🎟️ ᴜᴘɢʀᴀᴅᴇ', callback_data="premium"),
                 ],[
-                    InlineKeyboardButton('♻️ ᴅᴍᴄᴀ', callback_data='disclaimer')
+                    InlineKeyboardButton('♻️ ᴅᴍᴄᴀ', callback_data='disclaimer'),
+                    InlineKeyboardButton('👤 ᴀʙᴏᴜᴛ', callback_data='me')
+                ],[
+                    InlineKeyboardButton('🚫 ᴇᴀʀɴ ᴍᴏɴᴇʏ ᴡɪᴛʜ ʙᴏᴛ 🚫', callback_data="earn")
                 ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
