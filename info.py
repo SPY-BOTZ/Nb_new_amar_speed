@@ -26,7 +26,7 @@ PICS = (environ.get('PICS', 'https://image.zaw-myo.workers.dev/image/08bf37ea-94
 NOR_IMG = environ.get("NOR_IMG", "https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb")
 MELCOW_VID = environ.get("MELCOW_VID", "https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb")
 SPELL_IMG = environ.get("SPELL_IMG", "https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb")
-SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb'))
+SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://image.zaw-myo.workers.dev/image/d6da2d77-94c6-4f01-a8f9-02230b73ae9a'))
 FSUB_IMG = (environ.get('FSUB_IMG', 'https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb')).split() 
 
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1249672673').split()] 
