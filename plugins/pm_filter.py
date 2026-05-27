@@ -853,9 +853,11 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
-				await save_request(search, message.chat.id)
-				await message.reply_text(
-    f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega.")
+                await save_request(search, message.chat.id)
+
+                await message.reply_text(
+                    f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega."
+                )
                 if settings["spell_check"]:
                     ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
                     is_misspelled = await ai_spell_check(chat_id = message.chat.id,wrong_name=search)
