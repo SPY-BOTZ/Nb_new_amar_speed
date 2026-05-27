@@ -42,6 +42,7 @@ REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_
 SPELL_IMG = environ.get("SPELL_IMG","https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb")
 support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1001937259467') 
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
+REQUEST_GROUP = -1001937259467
 
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://technicalseekho249_db_user:JI2rAJvc0RE2asYE@cluster0.8hgdhqt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
