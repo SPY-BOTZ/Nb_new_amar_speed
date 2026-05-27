@@ -857,33 +857,33 @@ async def auto_filter(client, msg, spoll=False):
             if not files:
                 await save_request(search, message.chat.id)
 
-                await client.send_message(
-                    REQUEST_GROUP,
-                    f"🎬 New Movie Request
+    await bot.send_message(
+        REQUEST_GROUP,
+        f"🎬 New Movie Request\n\n👤 {message.from_user.mention}\n📥 Requested: {search}"
+    )
 
-👤 {message.from_user.mention}
-📥 Requested: {search}"
+    buttons = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    '🔍 Search Again 🔍',
+                    switch_inline_query_current_chat=search
                 )
+            ]
+        ]
+    )
 
-                buttons = InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                '🔍 Search Again 🔍',
-                                switch_inline_query_current_chat=search
-                            )
-                        ]
-                    ]
-                )
+    await message.reply_text(
+        f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega.",
+        reply_markup=buttons
+    )
+
+    return
+                await save_request(search, message.chat.id)
 
                 await message.reply_text(
-                    f"❌ {search} not available now.
-
-✅ Admin upload karte hi automatically notify milega.",
-                    reply_markup=buttons
+                    f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega."
                 )
-
-                return
                 if settings["spell_check"]:
                     ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
                     is_misspelled = await ai_spell_check(chat_id = message.chat.id,wrong_name=search)
