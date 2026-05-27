@@ -10,6 +10,8 @@ from database.refer import referdb
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 import pyrogram
+from info import REQUEST_GROUP
+from database.request_db import save_request
 from info import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, WebAppInfo
 from pyrogram import Client, filters, enums
@@ -853,6 +855,30 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
+				await save_request(search, message.chat.id)
+
+    await bot.send_message(
+        REQUEST_GROUP,
+        f"🎬 New Movie Request\n\n👤 {message.from_user.mention}\n📥 Requested: {search}"
+    )
+
+    buttons = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    '🔍 Search Again 🔍',
+                    switch_inline_query_current_chat=search
+                )
+            ]
+        ]
+    )
+
+    await message.reply_text(
+        f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega.",
+        reply_markup=buttons
+    )
+
+    return
                 await save_request(search, message.chat.id)
 
                 await message.reply_text(
