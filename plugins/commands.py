@@ -7,7 +7,11 @@ import asyncio
 import time
 import pytz
 from logging_helper import LOGGER
-from .pm_filter import auto_filter 
+try:
+    from .pm_filter import auto_filter
+except Exception as e:
+    print(f"PM_FILTER_IMPORT_ERROR: {e}")
+    auto_filter = None 
 from Script import script
 from datetime import datetime, timedelta
 from database.refer import referdb
