@@ -1112,3 +1112,34 @@ async def advantage_spell_chok(client, message):
         await message.delete()
     except Exception:
         pass
+
+
+# ===== NOT FOUND REPLY FIX =====
+
+if not files:
+
+    await save_request(search, message.from_user.id)
+
+    buttons = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "🔍 Search Again",
+                    switch_inline_query_current_chat=search
+                )
+            ]
+        ]
+    )
+
+    await client.send_message(
+        REQUEST_GROUP,
+        f"🎬 New Movie Request\n\n👤 User : {message.from_user.mention}\n📥 Requested : {search}"
+    )
+
+    return await message.reply_text(
+        f"""<b>❌ THIS MOVIE IS NOT AVAILABLE NOW
+
+📥 Your Request Has Been Sent To Admin
+🔔 You Will Be Notified After Upload</b>""",
+        reply_markup=buttons
+    )
