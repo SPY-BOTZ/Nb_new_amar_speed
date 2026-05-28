@@ -55,7 +55,7 @@ DB_CHANGE_LIMIT = int(environ.get('DB_CHANGE_LIMIT', "432"))
 
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+HvkOX6x9RIJkYjZl')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+IyGqymZL_qtkMTk1')
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/Prime_Movie_Request_bot')
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
 AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814") # add multiple channels here, separated by single space
