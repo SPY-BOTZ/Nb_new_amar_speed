@@ -10,8 +10,6 @@ from database.refer import referdb
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 import pyrogram
-from info import REQUEST_GROUP
-from database.request_db import save_request
 from info import *
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, WebAppInfo
 from pyrogram import Client, filters, enums
@@ -21,7 +19,6 @@ from fuzzywuzzy import process
 from database.users_chats_db import db
 from database.ia_filterdb import Media, Media2, get_file_details, get_search_results, get_bad_files
 from logging_helper import LOGGER
-from database.request_db import save_request
 from urllib.parse import quote_plus
 from Lucia.util.file_properties import get_name, get_hash, get_media_file_size
 from database.topdb import silentdb
@@ -121,7 +118,7 @@ async def refercall(bot, query):
         parse_mode=enums.ParseMode.HTML
         )
     await query.answer()
-    
+	
 async def build_pagination_buttons(btn, total_results, current_offset, next_offset, req, key, settings):
     limit = 10 if settings.get('max_btn') else int(MAX_B_TN)
     total_pages = math.ceil(total_results / limit)
@@ -630,16 +627,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             btn= [[
                 InlineKeyboardButton("𝖲𝗍𝗋𝖾𝖺𝗆", url=silent_stream),
                 InlineKeyboardButton("𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽", url=silent_download)        
-        ]]
+	    ]]
             await query.edit_message_reply_markup(
                 reply_markup=InlineKeyboardMarkup(btn)
-        )
+	    )
             await silent_msg.reply_text(
                 text=f"•• ʟɪɴᴋ ɢᴇɴᴇʀᴀᴛᴇᴅ ꜰᴏʀ ɪᴅ #{user_id} \n•• ᴜꜱᴇʀɴᴀᴍᴇ : {username} \n\n•• ᖴᎥᒪᗴ Nᗩᗰᗴ : {fileName}",
                 quote=True,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(btn)
-        )                
+	    )                
         except Exception as e:
             LOGGER.error(e)
             await query.answer(f"⚠️ SOMETHING WENT WRONG \n\n{e}", show_alert=True)
@@ -728,7 +725,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 query.message.chat.id, 
                 query.message.id, 
                 InputMediaPhoto(SUBSCRIPTION)
-            ) 
+	        ) 
             await query.message.edit_text(
                 text=script.PREMIUM_TEXT.format(query.from_user.mention),
                 reply_markup=reply_markup,
@@ -749,7 +746,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 query.message.chat.id, 
                 query.message.id, 
                 InputMediaPhoto(SUBSCRIPTION)
-            ) 
+	        ) 
             await query.message.edit_text(
                 text=script.PREMIUM_UPI_TEXT.format(query.from_user.mention),
                 reply_markup=reply_markup,
@@ -771,7 +768,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 query.message.chat.id, 
                 query.message.id, 
                 InputMediaPhoto(random.choice(PICS))
-            )
+			)
             await query.message.edit_text(
                 text=script.PREMIUM_STAR_TEXT,
                 reply_markup=reply_markup,
@@ -790,7 +787,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 text=script.EARN_INFO.format(temp.B_LINK),
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
-            )
+			)
         except Exception as e:
             LOGGER.error(e)
                     
@@ -809,7 +806,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
     elif query.data == "source":
         buttons = [[
-            InlineKeyboardButton('ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 📜', url='https://t.me/Prime_Movie_Request_bot'),
+            InlineKeyboardButton('ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 📜', url='https://github.com/NBBotz/Auto-Filter-Bot.git'),
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ⇋', callback_data='me')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -833,7 +830,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML 
             )
-        
+		
     await query.answer(MSG_ALRT)
 
     
@@ -855,29 +852,6 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
-                await save_request(search, message.from_user.id)
-
-                await client.send_message(
-                    REQUEST_GROUP,
-                    f"🎬 New Movie Request\n\n👤 {message.from_user.mention}\n📥 Requested: {search}"
-                )
-
-                buttons = InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                '🔍 Search Again 🔍',
-                                switch_inline_query_current_chat=search
-                            )
-                        ]
-                    ]
-                )
-
-                await message.reply_text(
-                    f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega.",
-                    reply_markup=buttons
-                )
-
                 if settings["spell_check"]:
                     ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
                     is_misspelled = await ai_spell_check(chat_id = message.chat.id,wrong_name=search)

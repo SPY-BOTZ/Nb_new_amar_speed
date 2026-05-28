@@ -7,11 +7,7 @@ import asyncio
 import time
 import pytz
 from logging_helper import LOGGER
-try:
-    from .pm_filter import auto_filter
-except Exception as e:
-    print(f"PM_FILTER_IMPORT_ERROR: {e}")
-    auto_filter = None 
+from .pm_filter import auto_filter 
 from Script import script
 from datetime import datetime, timedelta
 from database.refer import referdb
@@ -242,12 +238,10 @@ async def start(client, message):
                 else:
                     howtodownload = settings.get('tutorial_2', TUTORIAL_2) if is_second_shortener else settings.get('tutorial', TUTORIAL)
                 buttons = [[
-                 InlineKeyboardButton(text="♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪꜰʏ ♻️", url=verify)
-                 ],[
-                  InlineKeyboardButton(text="⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪꜰʏ ⁉️", url=howtodownload)
-                  ],[
-                 InlineKeyboardButton(text="💎 ʙᴜʏ ᴘʀᴇᴍɪᴜᴍ 💎", callback_data="premium")
-                 ]]
+                    InlineKeyboardButton(text="♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴠᴇʀɪꜰʏ ♻️", url=verify)
+                ],[
+                    InlineKeyboardButton(text="⁉️ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪꜰʏ ⁉️", url=howtodownload)
+                ]]
                 reply_markup=InlineKeyboardMarkup(buttons)
                 if await db.user_verified(user_id): 
                     msg = script.THIRDT_VERIFICATION_TEXT
