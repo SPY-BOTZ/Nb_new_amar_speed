@@ -845,55 +845,39 @@ async def auto_filter(client, msg, spoll=False):
         if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if len(message.text) < 100:
-    search = await replace_words(message.text)
-    search = search.lower()
-    search = search.replace("-", " ")
-    search = search.replace(":", "")
-    search = search.replace("'", "")
-    search = re.sub(r'\s+', ' ', search).strip()
-
-    m = await message.reply_text(
-        f'<b>Wait {message.from_user.mention} Searching Your Query: <i>{search}...</i></b>',
-        reply_to_message_id=message.id
-    )
-
-    files, offset, total_results = await get_search_results(
-        message.chat.id,
-        search,
-        offset=0,
-        filter=True
-    )
-
-    settings = await get_settings(message.chat.id)
-
-    if not files:
-        await save_request(search, message.chat.id)
-
-        await bot.send_message(
-            REQUEST_GROUP,
-            f"🎬 New Movie Request\n\n👤 {message.from_user.mention}\n📥 Requested: {search}"
-        )
-
-        buttons = InlineKeyboardMarkup(
-            [[
-                InlineKeyboardButton(
-                    "🔍 Search Again 🔍",
-                    switch_inline_query_current_chat=search
-                )
-            ]]
-        )
-
-        await message.reply_text(
-            f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega.",
-            reply_markup=buttons
-        )
-
-        return
+            search = await replace_words(message.text)
+            search = search.lower()
+            search = search.replace("-", " ")
+            search = search.replace(":", "")
+            search = search.replace("'", "")
+            search = re.sub(r'\s+', ' ', search).strip()
+            m=await message.reply_text(f'<b>Wait {message.from_user.mention} Searching Your Query: <i>{search}...</i></b>', reply_to_message_id=message.id)
+            files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
+            settings = await get_settings(message.chat.id)
+            if not files:
                 await save_request(search, message.chat.id)
 
-                await message.reply_text(
-                    f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega."
+                await client.send_message(
+                    REQUEST_GROUP,
+                    f"🎬 New Movie Request\n\n👤 {message.from_user.mention}\n📥 Requested: {search}"
                 )
+
+                buttons = InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                '🔍 Search Again 🔍',
+                                switch_inline_query_current_chat=search
+                            )
+                        ]
+                    ]
+                )
+
+                await message.reply_text(
+                    f"❌ {search} not available now.\n\n✅ Admin upload karte hi automatically notify milega.",
+                    reply_markup=buttons
+                )
+
                 if settings["spell_check"]:
                     ai_sts = await m.edit('🤖 ᴘʟᴇᴀꜱᴇ ᴡᴀɪᴛ, ᴀɪ ɪꜱ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ꜱᴘᴇʟʟɪɴɢ...')
                     is_misspelled = await ai_spell_check(chat_id = message.chat.id,wrong_name=search)
