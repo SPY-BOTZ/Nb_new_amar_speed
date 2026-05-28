@@ -1112,3 +1112,26 @@ async def advantage_spell_chok(client, message):
         await message.delete()
     except Exception:
         pass
+
+
+# Stylish Search Button Template
+
+btn = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(
+                "✅ Search Here ✅",
+                switch_inline_query_current_chat=search
+            )
+        ]
+    ]
+)
+
+text = f"""
+<b>╭━━❰ 🍿 Movie Found ❱━━➣
+┃ 🎬 Requested : {search}
+┃
+┃ ✅ THIS MOVIE IS AVAILABLE
+┃ IN OUR MOVIE SEARCH GROUP
+╰━━━━━━━━━━━━━━━➣</b>
+"""
