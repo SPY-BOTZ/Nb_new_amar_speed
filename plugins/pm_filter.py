@@ -855,7 +855,7 @@ async def auto_filter(client, msg, spoll=False):
             files, offset, total_results = await get_search_results(message.chat.id ,search, offset=0, filter=True)
             settings = await get_settings(message.chat.id)
             if not files:
-                await save_request(search, message.from_user.id)
+                await save_request(search, message.chat.id)
 
                 await client.send_message(
                     REQUEST_GROUP,
@@ -1112,26 +1112,3 @@ async def advantage_spell_chok(client, message):
         await message.delete()
     except Exception:
         pass
-
-
-# Stylish Search Button Template
-
-btn = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(
-                "✅ Search Here ✅",
-                switch_inline_query_current_chat=search
-            )
-        ]
-    ]
-)
-
-text = f"""
-<b>╭━━❰ 🍿 Movie Found ❱━━➣
-┃ 🎬 Requested : {search}
-┃
-┃ ✅ THIS MOVIE IS AVAILABLE
-┃ IN OUR MOVIE SEARCH GROUP
-╰━━━━━━━━━━━━━━━➣</b>
-"""
