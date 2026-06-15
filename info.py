@@ -37,7 +37,7 @@ MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-1002707429848')
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '-1002455587141')) 
 auth_grp = environ.get('AUTH_GROUP')
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
-reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002580860502') 
+reqst_channel = environ.get('REQST_CHANNEL_ID', '-1002217352991') 
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
 SPELL_IMG = environ.get("SPELL_IMG","https://image.zaw-myo.workers.dev/image/08bf37ea-94af-4125-afe6-b2a6d16d41fb")
 support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1001937259467') 
@@ -58,7 +58,7 @@ CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+IyGqymZL_qtkMTk1')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
-AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814") # add multiple channels here, separated by single space
+AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814 -1001937259467") # add multiple channels here, separated by single space
 AUTH_REQ_CHANNEL = environ.get('AUTH_REQ_CHANNEL', '-1002707429848')
 
 IS_VERIFY = is_enabled(environ.get('IS_VERIFY', "False"), False)
