@@ -30,7 +30,7 @@ SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://iili.io/CepwTle.jpg'))
 FSUB_IMG = (environ.get('FSUB_IMG', 'https://iili.io/CepwTle.jpg')).split() 
 
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1249672673').split()] 
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002148375787 -1002859176889 -1002904920278 -1002539937252 -1002860622575 -1003165335484').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002148375787 -1002859176889 -1002904920278 -1002539937252 -1002860622575 -1003165335484 -1002076498781').split()]
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001860172104'))  
 BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '-1001860172104'))  
 MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-1002707429848'))  
@@ -58,10 +58,10 @@ CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+IyGqymZL_qtkMTk1')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
-AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814") # add multiple channels here, separated by single space
-AUTH_REQ_CHANNEL = environ.get('AUTH_REQ_CHANNEL', '-1002707429848 -1003589639644')
+AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1003589639644") # add multiple channels here, separated by single space
+AUTH_REQ_CHANNEL = environ.get('AUTH_REQ_CHANNEL', '-1002707429848 -1002523462080')
 
-IS_VERIFY = is_enabled(environ.get('IS_VERIFY', "False"), False)
+IS_VERIFY = is_enabled(environ.get('IS_VERIFY', "False"), False)AUTH_CHANNEL = environ.get(\"AUTH_CHANNEL\", \"-1002641663814\") # add multiple channels here, separated by single space
 LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-100'))
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-100'))
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
