@@ -22,12 +22,12 @@ BOT_TOKEN = environ.get('BOT_TOKEN', "")
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = is_enabled(environ.get('USE_CAPTION_FILTER', "True"), True)
 
-PICS = (environ.get('PICS', 'https://iili.io/CepwTle.jpg')).split() 
-NOR_IMG = environ.get("NOR_IMG", "https://iili.io/CepwTle.jpg")
-MELCOW_VID = environ.get("MELCOW_VID", "https://iili.io/CepwTle.jpg")
-SPELL_IMG = environ.get("SPELL_IMG", "https://iili.io/CepwTle.jpg")
-SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://iili.io/CepwTle.jpg'))
-FSUB_IMG = (environ.get('FSUB_IMG', 'https://iili.io/CepwTle.jpg')).split() 
+PICS = (environ.get('PICS', 'https://iili.io/CQ2dC4p.jpg')).split() 
+NOR_IMG = environ.get("NOR_IMG", "https://iili.io/CQ2dC4p.jpg")
+MELCOW_VID = environ.get("MELCOW_VID", "https://iili.io/CQ2dC4p.jpg")
+SPELL_IMG = environ.get("SPELL_IMG", "https://iili.io/CQ2dC4p.jpg")
+SUBSCRIPTION = (environ.get('SUBSCRIPTION', 'https://iili.io/CQ2dC4p.jpg'))
+FSUB_IMG = (environ.get('FSUB_IMG', 'https://iili.io/CQ2dC4p.jpg')).split() 
 
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1249672673').split()] 
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002148375787 -1002859176889 -1002904920278 -1002539937252 -1002860622575 -1003165335484 -1002076498781').split()]
@@ -58,8 +58,8 @@ CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+IyGqymZL_qtkMTk1')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
-AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1003589639644") # add multiple channels here, separated by single space
-AUTH_REQ_CHANNEL = environ.get('AUTH_REQ_CHANNEL', '-1002707429848 -1002523462080')
+AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814") # add multiple channels here, separated by single space
+AUTH_REQ_CHANNEL = environ.get('AUTH_REQ_CHANNEL', '-1002707429848 -1002523462080 -1002076498781')
 
 IS_VERIFY = is_enabled(environ.get('IS_VERIFY', "False"), False)AUTH_CHANNEL = environ.get(\"AUTH_CHANNEL\", \"-1002641663814\") # add multiple channels here, separated by single space
 LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-100'))
