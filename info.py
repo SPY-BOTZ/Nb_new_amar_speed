@@ -58,12 +58,13 @@ CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+IyGqymZL_qtkMTk1')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
-AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814") # add multiple channels here, separated by single space
-AUTH_REQ_CHANNEL = environ.get('AUTH_REQ_CHANNEL', '-1002707429848 -1002523462080 -1002076498781')
+AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814")  # add multiple channels here, separated by single space
+AUTH_REQ_CHANNEL = environ.get("AUTH_REQ_CHANNEL", "-1002707429848 -1002523462080 -1002076498781")
 
-IS_VERIFY = is_enabled(environ.get('IS_VERIFY', "False"), False)AUTH_CHANNEL = environ.get(\"AUTH_CHANNEL\", \"-1002641663814\") # add multiple channels here, separated by single space
-LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-100'))
-LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-100'))
+IS_VERIFY = is_enabled(environ.get("IS_VERIFY", "False"), False)
+
+LOG_VR_CHANNEL = int(environ.get("LOG_VR_CHANNEL", "-100"))
+LOG_API_CHANNEL = int(environ.get("LOG_API_CHANNEL", "-100"))
 VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
 
 TUTORIAL = environ.get("TUTORIAL", "https://t.me/MovieSearchAutoGroup")
