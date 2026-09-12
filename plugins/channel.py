@@ -125,7 +125,7 @@ def get_trailer_button(tmdb_data: Dict) -> list:
 async def send_with_visual(bot, caption: str, tmdb_data: Dict, search_movie):
     try:
         visual_url = await get_best_visual(tmdb_data)
-        get_file = f'https://t.me/Prime_Movie_YT_Group}'
+        get_file ='https://t.me/Prime_Movie_YT_Group}'
         keyboard = InlineKeyboardMarkup([
             [InlineKeyboardButton("📱 Get File", url=get_file)],
             get_trailer_button(tmdb_data)
