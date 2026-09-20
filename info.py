@@ -53,13 +53,13 @@ MULTIPLE_DB = is_enabled(os.environ.get('MULTIPLE_DB', "True"), True) # Type Tru
 DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://wajsarif461_db_user:TwacJh76mwpHHpjw@cluster0.biueyst.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DB_CHANGE_LIMIT = int(environ.get('DB_CHANGE_LIMIT', "432")) 
 
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/Prime_Movie_YT_Group')
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+OSCzi_9ki8NiOWY1')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
-AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814")  # add multiple channels here, separated by single space
-AUTH_REQ_CHANNEL = environ.get("AUTH_REQ_CHANNEL", "-100")
+AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814 -1002455587141")  # add multiple channels here, separated by single space
+AUTH_REQ_CHANNEL = environ.get("AUTH_REQ_CHANNEL", "-1002707429848 -1004375390141 -1003838573435 -1002076498781 -1002523462080")
 
 IS_VERIFY = is_enabled(environ.get("IS_VERIFY", "False"), False)
 
