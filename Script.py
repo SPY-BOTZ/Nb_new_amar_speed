@@ -248,8 +248,7 @@ class script(object):
 
 ᴍᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<blockquote><b>🗃️ ꜰɪʟᴇ ɴᴀᴍᴇ : <a href='https://t.me/Prime_Movie_YT_Group'>{file_name}</a></b></blockquote>
-<b>ғɪʟᴇ sɪᴢᴇ ✓ {file_size}</b>"""
+    CAPTION = """<b><a href="https://t.me/Prime_Movie_YT_Group">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/Movie_Requst_YT">[ 𝑷𝑶𝑾𝑬𝑹 𝑮𝑹𝑶𝑼𝑷 ]</a></b>"""
 
     IMDB_TEMPLATE_TXT = """
 <b>🎬 ᴛɪᴛʟᴇ: <a href={url}>{title}</a>
