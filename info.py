@@ -58,8 +58,8 @@ CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/+aAmjR1AgZmRlOGJl')
 UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+wLSbBB3m3oBkMzE9')
 
-AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814 -1002455587141")  # add multiple channels here, separated by single space
-AUTH_REQ_CHANNEL = environ.get("AUTH_REQ_CHANNEL", "-1002707429848 -1002024922548")
+AUTH_CHANNEL = environ.get("AUTH_CHANNEL", "-1002641663814")  # add multiple channels here, separated by single space
+AUTH_REQ_CHANNEL = environ.get("AUTH_REQ_CHANNEL", "-1002707429848 -1002024922548 -1003838573435")
 
 IS_VERIFY = is_enabled(environ.get("IS_VERIFY", "False"), False)
 
