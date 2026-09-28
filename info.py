@@ -148,9 +148,9 @@ else:
     ON_HEROKU = False
 HAS_SSL = bool(getenv('HAS_SSL', False))
 if HAS_SSL:
-    URL = "https://technical-antonella-rahulyt-54d7f849.koyeb.app/".format(FQDN)
+    URL = "https://husky-thea-rahulyt-dd0806d2.koyeb.app/".format(FQDN)
 else:
-    URL = "https://technical-antonella-rahulyt-54d7f849.koyeb.app/".format(FQDN)
+    URL = "https://husky-thea-rahulyt-dd0806d2.koyeb.app/".format(FQDN)
 
 
 REACTIONS = ["🤝", "😇", "🤗", "😍", "👍", "🎅", "😐", "🥰", "🤩", "😱", "🤣", "😘", "👏", "😛", "😈", "🎉", "⚡️", "🫡", "🤓", "😎", "🏆", "🔥", "🤭", "🌚", "🆒", "👻", "😁"]
