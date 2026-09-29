@@ -1021,21 +1021,70 @@ async def auto_filter(client, msg, spoll=False):
 
 async def ai_spell_check(chat_id, wrong_name):
     async def search_movie(wrong_name):
-        search_results = await asyncio.to_thread(imdb.search_movie, wrong_name)
-        movie_list = [movie.title for movie in search_results.titles]
-        return movie_list
+        try:
+            search_results = await asyncio.to_thread(imdb.search_movie, wrong_name)
+
+            # IMDb/GraphQL can temporarily return None (for example on HTTP 403).
+            # Never access .titles when the request failed.
+            if search_results is None:
+                LOGGER.warning(
+                    "AI spell-check skipped: IMDb search returned no result for %r.",
+                    wrong_name
+                )
+                return []
+
+            titles = getattr(search_results, "titles", None)
+            if not titles:
+                LOGGER.warning(
+                    "AI spell-check skipped: IMDb search returned no titles for %r.",
+                    wrong_name
+                )
+                return []
+
+            movie_list = []
+            for movie in titles:
+                title = getattr(movie, "title", None)
+                if title:
+                    movie_list.append(str(title))
+            return movie_list
+
+        except Exception as e:
+            # A third-party IMDb/GraphQL failure must not crash the Telegram handler.
+            LOGGER.warning(
+                "AI spell-check IMDb request failed for %r: %s",
+                wrong_name,
+                e
+            )
+            return []
+
     movie_list = await search_movie(wrong_name)
     if not movie_list:
         return
-    for _ in range(5):
+
+    for _ in range(min(5, len(movie_list))):
         closest_match = process.extractOne(wrong_name, movie_list)
         if not closest_match or closest_match[1] <= 80:
-            return 
+            return
+
         movie = closest_match[0]
-        files, offset, total_results = await get_search_results(chat_id=chat_id, query=movie)
+        try:
+            files, offset, total_results = await get_search_results(
+                chat_id=chat_id,
+                query=movie
+            )
+        except Exception as e:
+            LOGGER.warning(
+                "AI spell-check database search failed for %r: %s",
+                movie,
+                e
+            )
+            files = None
+
         if files:
             return movie
-        movie_list.remove(movie)
+
+        if movie in movie_list:
+            movie_list.remove(movie)
 
 async def advantage_spell_chok(client, message):
     mv_id = message.id
